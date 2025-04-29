@@ -4,7 +4,7 @@ import { GameConfig } from './../game.config';
 import { GameWorld } from './../game-objects/game-world';
 import { AIOpponent } from './ai-opponent';
 import { AIPolicy } from './ai-policy';
-import cloneDeep = require('lodash/cloneDeep');
+import cloneDeep from 'lodash/cloneDeep';
 import { Mouse } from '../input/mouse';
 
 const aiConfig: IAIConfig = GameConfig.ai;
@@ -32,7 +32,7 @@ export class AITrainer {
 
     private placeBallInHand(gameWorld: GameWorld): void {
         debugger;
-        
+
         let marginX = 5;
         let pos = Vector2.copy(GameConfig.cueBallPosition);
 
@@ -55,9 +55,9 @@ export class AITrainer {
         newPower += (Math.random() * 2 * aiConfig.shotPowerMutationVariance) - aiConfig.shotPowerMutationVariance;
         newPower = newPower < aiConfig.minShotPower ? aiConfig.minShotPower : newPower;
         newPower = newPower > stickConfig.maxPower ? stickConfig.maxPower : newPower;
-    
+
         let newRotation = opponent.rotation;
-    
+
         if(opponent.evaluation > 0){
             newRotation += (1 / opponent.evaluation)*(Math.random() * 2 * Math.PI - Math.PI)
         }
@@ -112,7 +112,7 @@ export class AITrainer {
         }
         else {
             return this.createMutation(this._bestOpponent);
-        }    
+        }
     }
 
     public playTurn(): void {
